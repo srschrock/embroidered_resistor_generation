@@ -1,28 +1,26 @@
 import numpy
 
-def make_file (xpoint,ypoint,file_name):
-    #mm*10
-    xpoint = [x*10 for x in xpoint]
-    ypoint = [y*10 for y in ypoint]
+def make_file (dx,dy,file_name):
     
-    
-    #calc delta-x & y for each stitch
-    dx=[]; dy=[]
-    for i in range(0,len(xpoint)-1):
-        dx.append(xpoint[i+1]-xpoint[i])
-        dy.append(ypoint[i+1]-ypoint[i])
-    
+    #mm*10 is used for creation of .exp
+    dx = [x*10 for x in dx]
+    dy = [y*10 for y in dy]
+        
     #helps filter out the 10's and 237's, important later
     dx = [numpy.round(x) for x in dx]
     dy = [numpy.round(y) for y in dy]
     
     #convert to byte
-        #1-127 are forward by that amount 
-        #129-255 are backward by that same amount
-    dxn=[]; dyn=[]
-        #chr(10) and chr(237) mess things up, FYI
-        #need to alternate above and below these values to avoid offsets
+        #1-127 are forward by that amount in 0.1mm increments
+        #129-255 are backward by 0.1mm increments, 
+            #where 255 is -0.1mm, 254 is -0.2mm, etc
+    
+    #chr(10) and chr(237) mess things up, FYI
+    #need to alternate above and below these values to avoid offsets
+    #the following code addresses this issue
 
+    dxn=[]; dyn=[] #initialize variables for excluded 10 and 237
+    
     xpalt=True; xnalt=True; ypalt=True; ynalt=True;
     for stitch in range(0,len(dx)):
         if dx[stitch] < 0:
@@ -63,15 +61,17 @@ def make_file (xpoint,ypoint,file_name):
     # convert movement number to uint8 format (hexad)
     # and merge into one continuous string
     string2=""
-    for stitch in range(0,int(len(dxn)/1)):
+    for stitch in range(0,int(len(dxn)/1)): #int(len(dxn)/1)
         string2+=chr(int(dxn[stitch]))
         string2+=chr(int(dyn[stitch]))
     
+    # adding extention for .exp file type
+    file_name += "exp"
     
     # write data to .exp file
     with open(file_name, 'w') as filehandle:
         filehandle.write(string2)
 
     #return values for troubleshooting if needed
-    return dxn,dyn
+    return
 

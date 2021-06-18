@@ -7,15 +7,15 @@ def main_block (x,y, xpoint,ypoint,sl,pl,gl,tgl,right_bottom_stitches,width_stit
     for i in range(0,right_bottom_stitches):
         xpoint.append(x)
         ypoint.append(y)
-        x+=sl;
-        tl+=sl;
+        x += sl;
+        tl += sl;
 
     #step upwards 2 gap lengths
     for step in range(0,2):
         xpoint.append(x)
         ypoint.append(y)
-        y+=gl;
-        tl+=gl;
+        y += gl;
+        tl += gl;
 
 
     #repeating columns for main block
@@ -23,21 +23,21 @@ def main_block (x,y, xpoint,ypoint,sl,pl,gl,tgl,right_bottom_stitches,width_stit
         for i in range (0,height_stitches):
             xpoint.append(x)
             ypoint.append(y)
-            y+=sl;
-            tl+=sl;
+            y += sl;
+            tl += sl;
         xpoint.append(x)
         ypoint.append(y)
-        x-=gl;
-        tl+=gl;
+        x -= gl;
+        tl += gl;
         for i in range(0,height_stitches):
             xpoint.append(x)
             ypoint.append(y)
-            y-=sl;
-            tl+=sl;
+            y -= sl;
+            tl += sl;
         xpoint.append(x)
         ypoint.append(y)
-        x-=gl;
-        tl+=gl;
+        x -= gl;
+        tl += gl;
     #end of while loop, vertical tabs done
 
     x=x+gl; #cancel x jump of last loop
@@ -45,8 +45,8 @@ def main_block (x,y, xpoint,ypoint,sl,pl,gl,tgl,right_bottom_stitches,width_stit
     for step in range(0,2):
         xpoint.append(x)
         ypoint.append(y)
-        y-=gl; #step down to start return path
-        tl+=gl;
+        y -= gl; #step down to start return path
+        tl += gl;
 
 
     #return to left terminal pad
@@ -54,7 +54,7 @@ def main_block (x,y, xpoint,ypoint,sl,pl,gl,tgl,right_bottom_stitches,width_stit
     #for i in range(0,left_bottom_stitches):
         xpoint.append(x)
         ypoint.append(y)
-        x+=sl;
-        tl+=sl;
+        x += sl;
+        tl += sl;
     #print(xpoint)
     return(x,y, xpoint,ypoint,tl)

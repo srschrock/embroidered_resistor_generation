@@ -8,38 +8,38 @@ def pad_right(x,y, xpoint,ypoint,sl,pl,pad_rows):
         for ii in range(0,pad_rows):
             xpoint.append(x)
             ypoint.append(y)
-            x=x+pl/pad_rows;
+            x += (pl/pad_rows);
         xpoint.append(x)
         ypoint.append(y)
-        y=y+pl/(pad_rows*2-1);
+        y += pl/(pad_rows*2-1); 
         for ii in range(0,pad_rows):
             xpoint.append(x)
             ypoint.append(y)
-            x=x-pl/pad_rows;
+            x -= (pl/pad_rows);
         xpoint.append(x)
         ypoint.append(y)
-        y=y+pl/(pad_rows*2-1);
+        y += pl/(pad_rows*2-1);#*2-1
     #end of the loop to create connector pad (horizontal lines) (right)
-    y=y-pl/(pad_rows*2-1); #offset last movement
+    y -= pl/(pad_rows*2-1); #offset last movement *2-1
 
     #vertical lines
     for i in range(0,pad_rows):
         for ii in range(0,pad_rows):
             xpoint.append(x)
             ypoint.append(y)
-            y=y-pl/pad_rows;
+            y -= pl/pad_rows;
         xpoint.append(x)
         ypoint.append(y)
-        x=x+pl/(pad_rows*2-1);
+        x += pl/(pad_rows*2-1);
         for ii in range(0,pad_rows):
             xpoint.append(x)
             ypoint.append(y)
-            y=y+pl/pad_rows;
+            y += pl/pad_rows;
         xpoint.append(x)
         ypoint.append(y)
-        x=x+pl/(pad_rows*2-1);
+        x += pl/(pad_rows*2-1);
     # end of the loop to create connector (vertical lines) (right)
-    x = x - pl / (pad_rows*2-1);  # step back to top of pad
+    x  -= pl / (pad_rows*2-1);  # step back to top of pad
     return x, y, xpoint, ypoint
 # end of function pads_right
 
