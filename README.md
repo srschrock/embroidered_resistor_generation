@@ -20,6 +20,9 @@ The program will create a resistor to your specifications, save the .exp file, c
 Instructions on package use:
 https://www.appropedia.org/w/index.php?title=Embroidered_Electrical_Resistor_Generation
 
+Documentation on writing to EXP embroidery files:
+https://www.appropedia.org/EXP_Embroidery_File_Format
+
 Cloud manufacturing page for embroidered electronics:
 https://socl.frigate.me/
 (still in development, this resistor generation package will be added as a functionality to the website soon)
